@@ -1,0 +1,34 @@
+.wrapper {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.input {
+  font-size: 16px;
+  margin: 0;
+  padding: 6px;
+  background-color: #efbae2;
+  border-radius: 5px;
+  border: 1px solid #a49898;
+
+  &:hover,
+  &:focus-visible {
+    background-color: #eca0d9;
+    border: 1px solid #252525;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.input--error {
+  background-color: #f2979f;
+  border: 1px solid #f40000;
+}
