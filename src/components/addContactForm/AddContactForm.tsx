@@ -1,7 +1,9 @@
 import Button from "../../UI/button/Button";
 import './AddContactForm.css';
+import '../../UI/input/InputField.css';
 import InputField from "../../UI/input/InputField";
 import React, {useState} from "react";
+import {validateForm} from "../../validate/validate";
 
 export interface Contact {
   name: string;
@@ -11,28 +13,53 @@ export interface Contact {
 
 export interface AddContactFormProps {
   onAddContact: (contact: Contact) => void;
+  contacts: Contact[];
 }
 
-export default function AddContactForm({onAddContact}: AddContactFormProps) {
+export default function AddContactForm({onAddContact, contacts}: AddContactFormProps) {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string}>({});
+  const [currentError, setCurrentError] = useState<string | null>(null);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const newContact: Contact = {
-      name,
-      position,
-      phone
-    };
+    const validationErrors = validateForm([name, position, phone], contacts);
 
-    onAddContact(newContact);
+    if (validationErrors.isValid) {
+      const newContact: Contact = {
+        name,
+        position,
+        phone
+      };
 
-    setName("");
-    setPosition("");
-    setPhone("");
+      onAddContact(newContact);
+
+      setName("");
+      setPosition("");
+      setPhone("");
+      setErrors({});
+      setCurrentError(null);
+    } else {
+      const errorMessages: { [key: string]: string } = {};
+
+      validationErrors.errors.forEach((error) => {
+        if (error.input) {
+          errorMessages[error.input] = error.message;
+        }
+      });
+
+      // Устанавливаем ошибки и показываем первую ошибку
+      setErrors(errorMessages);
+      setCurrentError(Object.keys(errorMessages)[0]);
+    }
   }
+
+  const getInputClassName = (field: string) => {
+    return errors[field] ? "input--error" : "input";
+  };
 
   return (
     <form className="form" action="#" method="post" name="contact-add" onSubmit={handleSubmit}>
@@ -44,6 +71,7 @@ export default function AddContactForm({onAddContact}: AddContactFormProps) {
           placeholder='Ivan'
           value={name}
           onChange={(e) => setName(e.target.value)}
+          className={getInputClassName("name")}
         />
         <InputField
           id='position'
@@ -52,6 +80,7 @@ export default function AddContactForm({onAddContact}: AddContactFormProps) {
           placeholder='Developer'
           value={position}
           onChange={(e) => setPosition(e.target.value)}
+          className={getInputClassName("position")}
         />
         <InputField
           id='phone'
@@ -60,10 +89,15 @@ export default function AddContactForm({onAddContact}: AddContactFormProps) {
           placeholder='+7 999 999 99 99'
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+          className={getInputClassName("phone")}
         />
       </div>
 
-      <p className="form__error" aria-live="assertive"></p>
+      {currentError && (
+        <p className="form__error" aria-live="assertive">
+          {errors[currentError]}
+        </p>
+      )}
 
       <div className="form__buttons">
         <Button className={'button'} type="submit" ariaLabel={"Add contact"}>ADD</Button>

@@ -27,7 +27,7 @@ export default function Main() {
 
   return (
     <main className="main">
-      <InteractionContainer onAddContact={handleAddContact} />
+      <InteractionContainer onAddContact={handleAddContact} contacts={contacts} />
       <ContactTable alphabetLeft={ALPHABET_A_M} alphabetRight={ALPHABET_N_Z} contacts={contacts} />
     </main>
   )
