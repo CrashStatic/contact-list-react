@@ -1,0 +1,31 @@
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #e5aff5;
+  border-top: 1px solid #ff237e;
+  border-bottom: 1px solid #ff237e;
+
+  & + .message {
+    border-top: none;
+  }
+}
+
+.message__buttons {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.message__info p {
+  margin: 0;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}

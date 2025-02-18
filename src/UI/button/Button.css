@@ -17,3 +17,24 @@
     outline: none;
   }
 }
+
+.interaction-button {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: #efbae2;
+  border: 1px solid #a49898;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+
+  &:hover,
+  &:focus-visible {
+    background-color: #f0abdf;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

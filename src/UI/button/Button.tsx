@@ -6,8 +6,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-export default function Button({children, ariaLabel, ...props}: ButtonProps) {
+export default function Button({children, ariaLabel, className, ...props}: ButtonProps) {
   return (
-    <button {...props} aria-label={ariaLabel} className='button'>{children}</button>
+    <button {...props} aria-label={ariaLabel} className={className}>{children}</button>
   )
 }

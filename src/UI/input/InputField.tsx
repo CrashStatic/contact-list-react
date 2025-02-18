@@ -1,16 +1,16 @@
 import './InputField.css';
-import React, {useState} from "react";
+import React from "react";
 
 interface InputFieldProps {
-  id: string;
-  label: string;
-  placeholder: string;
-  type: 'phone' | 'text';
+  id: string,
+  label: string,
+  placeholder: string,
+  type: 'phone' | 'text',
+  value: string,
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-export default function InputField({id, label, placeholder, type}: InputFieldProps) {
-  const [value, setValue] = useState('');
-
+export default function InputField({id, label, placeholder, type, value, onChange}: InputFieldProps) {
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     let inputValue = e.target.value;
 
@@ -28,9 +28,9 @@ export default function InputField({id, label, placeholder, type}: InputFieldPro
       if (inputValue.length > 7) formattedValue += ` ${inputValue.substring(7, 9)}`;
       if (inputValue.length > 9) formattedValue += ` ${inputValue.substring(9, 11)}`;
 
-      setValue(formattedValue);
+      onChange({target: { value: formattedValue}} as React.ChangeEvent<HTMLInputElement>);
     } else {
-      setValue(inputValue);
+      onChange(e);
     }
   }
 

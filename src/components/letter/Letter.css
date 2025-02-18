@@ -42,16 +42,16 @@
 }
 
 .letter__letter {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .letter__counter {
   display: none;
-  font-weight: 800;
 }
 
 .letter__counter--active {
   display: block;
+  font-weight: 700;
 }
 
 .letter__contacts {

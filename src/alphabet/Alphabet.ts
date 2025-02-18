@@ -84,7 +84,7 @@ const ALPHABET_N_Z = [
   },
   {
     letter: 'U',
-    id: 'U'
+    id: 'u'
   },
   {
     letter: 'V',
