@@ -14,7 +14,10 @@ export interface LetterProps {
 export default function Letter({letter, id, contacts, onRemoveContact, onEditContact}: LetterProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  function handleToggle() {
+  function handleToggle(e: React.MouseEvent) {
+    if (e.target instanceof HTMLElement && e.target.closest('.modal')) {
+      return;
+    }
     setIsOpen(prevState => !prevState);
   }
 
@@ -45,6 +48,7 @@ export default function Letter({letter, id, contacts, onRemoveContact, onEditCon
             phone={contact.phone}
             onRemoveContact={onRemoveContact}
             onEditContact={onEditContact}
+            contacts={contacts}
           />
         ))}
       </div>

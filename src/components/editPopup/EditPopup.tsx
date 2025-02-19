@@ -4,31 +4,66 @@ import Button from "../../UI/button/Button.js";
 import ModalHeader from "../modal/ModalHeader";
 import './EditPopup.css';
 import {Contact} from "../addContactForm/AddContactForm";
+import {validateForm} from "../../validate/validate";
 
 interface EditPopupProps {
   contact: Contact;
+  contacts: Contact[];
   onClose: () => void;
   onSave: (contact: Contact) => void;
 }
 
-export default function EditPopup({contact, onSave, onClose}: EditPopupProps) {
+export default function EditPopup({contact, onSave, onClose, contacts}: EditPopupProps) {
   const [name, setName] = useState(contact.name);
   const [position, setPosition] = useState(contact.position);
   const [phone, setPhone] = useState(contact.phone);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [currentError, setCurrentError] = useState<string | null>(null);
 
   function handleSave(e: React.FormEvent) {
     e.preventDefault();
-    const updatedContact = { ...contact, name, position, phone }; // Учитываем id
-    onSave(updatedContact);
-    onClose();
+
+    const updatedContact = { ...contact, name, position, phone };
+
+    const validationErrors = validateForm([name, position, phone], contacts);
+
+    if (validationErrors.isValid) {
+      onSave(updatedContact);
+      onClose();
+      setErrors({});
+      setCurrentError(null);
+    } else {
+      const errorMessages: { [key: string]: string } = {};
+
+      validationErrors.errors.forEach((error) => {
+        if (error.input) {
+          errorMessages[error.input] = error.message;
+        }
+      });
+
+      setErrors(errorMessages);
+      setCurrentError(Object.keys(errorMessages)[0]);
+    }
+  }
+
+  const getInputClassName = (field: string) => {
+    return `input${errors[field] ? " input--error" : ""}`;
+  };
+
+  function handleClickInsidePopup(e: React.MouseEvent) {
+    e.stopPropagation();
   }
 
   return (
-    <dialog className="modal" open>
+    <dialog className="modal" open onClick={handleClickInsidePopup}>
       <div className="modal__container">
         <ModalHeader onClose={onClose}/>
         <div className="modal__body" id="modal-body">
-          <p className="popup__error" aria-live="assertive"></p>
+          {currentError && (
+            <p className="popup__error" aria-live="assertive">
+              {errors[currentError]}
+            </p>
+          )}
           <form className="popup__form form" action="#" method="post" name="popup-contact-add" onSubmit={handleSave}>
             <div className="form__inputs inputs--popup">
               <InputField
@@ -38,7 +73,7 @@ export default function EditPopup({contact, onSave, onClose}: EditPopupProps) {
                 type='text'
                 value={name}
                 onChange={e => setName(e.target.value)}
-                className={'input'}
+                className={getInputClassName('name')}
               />
               <InputField
                 id='popup-position'
@@ -47,7 +82,7 @@ export default function EditPopup({contact, onSave, onClose}: EditPopupProps) {
                 type='text'
                 value={position}
                 onChange={e => setPosition(e.target.value)}
-                className={'input'}
+                className={getInputClassName('position')}
               />
               <InputField
                 id='popup-phone'
@@ -56,7 +91,7 @@ export default function EditPopup({contact, onSave, onClose}: EditPopupProps) {
                 type='phone'
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
-                className={'input'}
+                className={getInputClassName('phone')}
               />
             </div>
             <Button className={'button'} type="submit" ariaLabel={"Save contact"}>Save</Button>

@@ -12,10 +12,11 @@ interface ContactCardProps {
   phone: string,
   id?: string,
   onRemoveContact?: (name: string) => void,
-  onEditContact?: (contact: Contact) => void;
+  onEditContact?: (contact: Contact) => void,
+  contacts: Contact[],
 }
 
-export default function ContactCard({name, position, phone, id, onRemoveContact, onEditContact}: ContactCardProps) {
+export default function ContactCard({name, position, phone, id, onRemoveContact, onEditContact, contacts}: ContactCardProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   function handleEditClick() {
@@ -58,6 +59,7 @@ export default function ContactCard({name, position, phone, id, onRemoveContact,
       {isEditing && (
         <EditPopup
           contact={{name, position, phone, id}}
+          contacts={contacts}
           onSave={handleSaveContact}
           onClose={handleClosePopup} />
       )}
