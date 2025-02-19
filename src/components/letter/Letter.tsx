@@ -4,12 +4,13 @@ import ContactCard from "../contactCard/ContactCard";
 import React, {useState} from "react";
 
 export interface LetterProps {
-  letter: string;
-  id: string;
-  contacts?: Contact[];
+  letter: string,
+  id: string,
+  contacts?: Contact[],
+  onRemoveContact?: (name: string) => void,
 }
 
-export default function Letter({letter, id, contacts}: LetterProps) {
+export default function Letter({letter, id, contacts, onRemoveContact}: LetterProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleToggle() {
@@ -35,8 +36,14 @@ export default function Letter({letter, id, contacts}: LetterProps) {
         </span>
       </div>
       <div className={isOpen ? "letter__contacts--open" : "letter__contacts"}>
-        {contacts?.map((contact: Contact, index: number ) => (
-          <ContactCard key={index} name={contact.name} position={contact.position} phone={contact.phone} />
+        {contacts?.map((contact: Contact, index: number) => (
+          <ContactCard
+            key={index}
+            name={contact.name}
+            position={contact.position}
+            phone={contact.phone}
+            onRemoveContact={onRemoveContact}
+          />
         ))}
       </div>
     </div>

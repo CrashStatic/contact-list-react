@@ -30,10 +30,24 @@ export default function Main() {
     localStorage.removeItem("contacts");
   }
 
+  function handleRemoveContact(name: string) {
+    const updatedContacts = contacts.filter(contact => contact.name !== name);
+    setContacts(updatedContacts);
+    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+  }
+
   return (
     <main className="main">
-      <InteractionContainer onAddContact={handleAddContact} contacts={contacts} onRemoveContacts={handleRemoveContacts} />
-      <ContactTable alphabetLeft={ALPHABET_A_M} alphabetRight={ALPHABET_N_Z} contacts={contacts} />
+      <InteractionContainer
+        onAddContact={handleAddContact}
+        contacts={contacts}
+        onRemoveContacts={handleRemoveContacts} />
+      <ContactTable
+        alphabetLeft={ALPHABET_A_M}
+        alphabetRight={ALPHABET_N_Z}
+        contacts={contacts}
+        onRemoveContact={handleRemoveContact}
+      />
     </main>
   )
 }
