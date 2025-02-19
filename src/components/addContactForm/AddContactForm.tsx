@@ -1,6 +1,5 @@
 import Button from "../../UI/button/Button";
 import './AddContactForm.css';
-import '../../UI/input/InputField.css';
 import InputField from "../../UI/input/InputField";
 import React, {useState} from "react";
 import {validateForm} from "../../validate/validate";
@@ -51,14 +50,13 @@ export default function AddContactForm({onAddContact, contacts}: AddContactFormP
         }
       });
 
-      // Устанавливаем ошибки и показываем первую ошибку
       setErrors(errorMessages);
       setCurrentError(Object.keys(errorMessages)[0]);
     }
   }
 
   const getInputClassName = (field: string) => {
-    return errors[field] ? "input--error" : "input";
+    return `input${errors[field] ? " input--error" : ""}`;
   };
 
   return (

@@ -41,7 +41,7 @@ export default function InputField({id, label, placeholder, type, value, onChang
       <input
         className={className}
         id={id} name={id}
-        type="text"
+        type={type === 'phone' ? 'tel' : 'text'}
         value={value}
         placeholder={placeholder}
         onChange={handleInputChange}
