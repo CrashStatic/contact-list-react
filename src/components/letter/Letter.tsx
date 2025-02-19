@@ -8,9 +8,10 @@ export interface LetterProps {
   id: string,
   contacts?: Contact[],
   onRemoveContact?: (name: string) => void,
+  onEditContact?: (updateContact: Contact) => void
 }
 
-export default function Letter({letter, id, contacts, onRemoveContact}: LetterProps) {
+export default function Letter({letter, id, contacts, onRemoveContact, onEditContact}: LetterProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleToggle() {
@@ -43,6 +44,7 @@ export default function Letter({letter, id, contacts, onRemoveContact}: LetterPr
             position={contact.position}
             phone={contact.phone}
             onRemoveContact={onRemoveContact}
+            onEditContact={onEditContact}
           />
         ))}
       </div>

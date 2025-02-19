@@ -22,7 +22,11 @@ export default function Main() {
   }, [contacts]);
 
   function handleAddContact(newContact: Contact) {
-    setContacts(prevContacts => [...prevContacts, newContact]);
+    const contactWithId = {
+      ...newContact,
+      id: Date.now().toString()
+    };
+    setContacts(prevContacts => [...prevContacts, contactWithId]);
   }
 
   function handleRemoveContacts() {
@@ -32,6 +36,14 @@ export default function Main() {
 
   function handleRemoveContact(name: string) {
     const updatedContacts = contacts.filter(contact => contact.name !== name);
+    setContacts(updatedContacts);
+    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+  }
+
+  function handleEditContact(updatedContact: Contact) {
+    const updatedContacts = contacts.map(contact =>
+      contact.id === updatedContact.id ? updatedContact : contact
+    );
     setContacts(updatedContacts);
     localStorage.setItem("contacts", JSON.stringify(updatedContacts));
   }
@@ -47,6 +59,7 @@ export default function Main() {
         alphabetRight={ALPHABET_N_Z}
         contacts={contacts}
         onRemoveContact={handleRemoveContact}
+        onEditContact={handleEditContact}
       />
     </main>
   )

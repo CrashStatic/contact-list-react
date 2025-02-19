@@ -8,13 +8,15 @@ interface ContactTableProps {
   alphabetRight: LetterProps[],
   contacts: Contact[],
   onRemoveContact: (name: string) => void,
+  onEditContact: (updateContact: Contact) => void,
 }
 
 export default function ContactTable({
                                        alphabetLeft,
                                        alphabetRight,
                                        contacts,
-                                       onRemoveContact
+                                       onRemoveContact,
+                                       onEditContact
                                      }: ContactTableProps) {
   function groupContactsByLetter(alphabet: LetterProps[]) {
     return alphabet.map((letter) => {
@@ -42,6 +44,7 @@ export default function ContactTable({
             id={id}
             contacts={contacts}
             onRemoveContact={onRemoveContact}
+            onEditContact={onEditContact}
           />
         ))}
       </div>
@@ -53,6 +56,7 @@ export default function ContactTable({
             id={id}
             contacts={contacts}
             onRemoveContact={onRemoveContact}
+            onEditContact={onEditContact}
           />
         ))}
       </div>
