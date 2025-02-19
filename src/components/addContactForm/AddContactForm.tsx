@@ -11,15 +11,16 @@ export interface Contact {
 }
 
 export interface AddContactFormProps {
-  onAddContact: (contact: Contact) => void;
-  contacts: Contact[];
+  onAddContact: (contact: Contact) => void,
+  contacts: Contact[],
+  onRemoveContacts: any
 }
 
-export default function AddContactForm({onAddContact, contacts}: AddContactFormProps) {
+export default function AddContactForm({onAddContact, contacts, onRemoveContacts}: AddContactFormProps) {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [phone, setPhone] = useState("");
-  const [errors, setErrors] = useState<{ [key: string]: string}>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [currentError, setCurrentError] = useState<string | null>(null);
 
   function handleSubmit(e: React.FormEvent) {
@@ -99,7 +100,7 @@ export default function AddContactForm({onAddContact, contacts}: AddContactFormP
 
       <div className="form__buttons">
         <Button className={'button'} type="submit" ariaLabel={"Add contact"}>ADD</Button>
-        <Button className={'button'} type="reset" ariaLabel={"Clear contact list"}>Clear List</Button>
+        <Button className={'button'} type="reset" ariaLabel={"Clear contact list"} onClick={onRemoveContacts}>Clear List</Button>
         <Button className={'button'} type="button" ariaLabel={"Search contact"}>Search</Button>
       </div>
     </form>
