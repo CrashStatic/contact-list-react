@@ -3,6 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import Button from "../../UI/button/Button.js";
 import ModalHeader from "../modal/ModalHeader";
 import './EditPopup.css';
+import '../modal/Modal.css';
 import {Contact} from "../addContactForm/AddContactForm";
 import {validateForm} from "../../validate/validate";
 import {createPortal} from "react-dom";

@@ -1,0 +1,18 @@
+.modal__input {
+  width: 100%;
+}
+
+.modal__search-area {
+  width: 500px;
+  height: 350px;
+  background-color: #d3bcef;
+  border-radius: 5px;
+  border: 1px solid #a49898;
+  padding: 10px;
+  overflow: auto;
+}
+
+.modal__button-show {
+  width: max-content;
+  align-self: center;
+}

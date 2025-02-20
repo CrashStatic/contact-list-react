@@ -1,0 +1,38 @@
+.modal {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  min-height: 100%;
+  background: none;
+  padding: 0;
+  border: none;
+  inset: 0;
+  visibility: hidden;
+}
+
+.modal[open] {
+  visibility: visible;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  flex-direction: column;
+  z-index: 2;
+  min-width: 300px;
+  background-color: #ffffff;
+  margin: auto;
+  border-radius: 5px;
+  border: 1px solid #a49898;
+}
+
+.modal__body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
