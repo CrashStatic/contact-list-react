@@ -44,8 +44,8 @@ export default function Main() {
     const updatedContacts = contacts.map(contact =>
       contact.id === updatedContact.id ? updatedContact : contact
     );
-    setContacts(updatedContacts);
-    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+    setContacts(updatedContacts);  // Обновляем состояние с новым контактами
+    localStorage.setItem("contacts", JSON.stringify(updatedContacts));  // Обновляем localStorage
   }
 
   return (
@@ -53,7 +53,9 @@ export default function Main() {
       <InteractionContainer
         onAddContact={handleAddContact}
         contacts={contacts}
-        onRemoveContacts={handleRemoveContacts} />
+        onRemoveContacts={handleRemoveContacts}
+        // onEditContact={handleEditContact}
+      />
       <ContactTable
         alphabetLeft={ALPHABET_A_M}
         alphabetRight={ALPHABET_N_Z}

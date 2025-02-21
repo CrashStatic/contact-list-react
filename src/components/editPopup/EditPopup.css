@@ -1,3 +1,7 @@
+.edit-popup {
+  z-index: 10;
+}
+
 .popup__form {
   display: flex;
   align-items: center;

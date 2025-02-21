@@ -10,7 +10,7 @@ interface ContactCardProps {
   name: string,
   position: string,
   phone: string,
-  id?: string,
+  id: string
   onRemoveContact?: (name: string) => void,
   onEditContact?: (contact: Contact) => void,
   contacts: Contact[],

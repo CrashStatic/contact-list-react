@@ -49,6 +49,7 @@ export default function Letter({letter, id, contacts, onRemoveContact, onEditCon
             onRemoveContact={onRemoveContact}
             onEditContact={onEditContact}
             contacts={contacts}
+            id={contact.id}
           />
         ))}
       </div>

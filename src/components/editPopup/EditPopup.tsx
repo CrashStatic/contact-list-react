@@ -82,7 +82,7 @@ export default function EditPopup({contact, onSave, onClose, contacts}: EditPopu
   }, []);
 
   return createPortal(
-    <dialog className="modal" open onClick={handleClickOutsidePopup} onKeyDown={e => e.stopPropagation()}>
+    <dialog className="modal edit-popup" open onClick={handleClickOutsidePopup} onKeyDown={e => e.stopPropagation()}>
       <div className="modal__container">
         <ModalHeader onClose={onClose}/>
         <div className="modal__body" id="modal-body">
