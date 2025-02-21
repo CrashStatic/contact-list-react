@@ -24,10 +24,10 @@ export function validateEmptyFields(inputs: string[]): Error[] {
   return errors;
 }
 
-export function validateContactUniqueness(storage: Contact[], contact: Contact): Error[] {
+export function validateContactUniqueness(storage: Contact[], contact: Omit<Contact, 'id'>): Error[] {
   const existingContact = storage.some((existingContact) => (
-    existingContact.name?.toLowerCase() === contact.name.toLowerCase() &&
-    existingContact.position?.toLowerCase() === contact.position.toLowerCase() &&
+    existingContact.name.toLowerCase() === contact.name.toLowerCase() &&
+    existingContact.position.toLowerCase() === contact.position.toLowerCase() &&
     existingContact.phone === contact.phone
   ));
   return existingContact
@@ -58,7 +58,7 @@ function validatePhone(phone: string): Error[] {
 export function validateForm(inputs: string[], storage: Contact[]): Validate {
   const errors: Error[] = [];
 
-  const contactToValidate: Contact = {
+  const contactToValidate: Omit<Contact, 'id'> = {
     name: inputs[0],
     position: inputs[1],
     phone: inputs[2]

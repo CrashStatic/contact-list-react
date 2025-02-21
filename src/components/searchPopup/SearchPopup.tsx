@@ -5,7 +5,7 @@ import Button from "../../UI/button/Button";
 import './SearchPopup.css';
 import '../modal/Modal.css';
 import {Contact} from "../addContactForm/AddContactForm";
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import ContactCard from "../contactCard/ContactCard";
 
 interface SearchPopupProps {
@@ -29,25 +29,43 @@ export default function SearchPopup({
                                       handleShowAll,
                                       onRemoveContact
                                     }: SearchPopupProps) {
-  // useEffect(() => {
-  //   // Этот эффект будет срабатывать при изменении contacts в родительском компоненте
-  //   // или при изменении searchInput в SearchPopup.
-  //   const filtered = contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(input.toLowerCase()) ||
-  //     contact.position.toLowerCase().includes(input.toLowerCase()) ||
-  //     contact.phone.toLowerCase().includes(input.toLowerCase())
-  //   );
-  //   onInputChange({
-  //     target: { value: input }  // Эта строка перезапишет filteredContacts
-  //   });
-  // }, [contacts, input]);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  function handleClickOutside(e: React.MouseEvent) {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  }
+
+  function handleEscKeyDown(e: KeyboardEvent) {
+    if (e.key === "Escape") {
+      onClose();
+    }
+  }
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => handleEscKeyDown(e);
+
+    document.addEventListener("keydown", handleEsc);
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, []);
 
   return createPortal(
-    <dialog className="modal" open onKeyDown={e => e.stopPropagation()}>
+    <dialog className="modal" open onClick={handleClickOutside} onKeyDown={e => e.stopPropagation()}>
       <div className="modal__container">
         <ModalHeader onClose={onClose}/>
         <div className="modal__body">
           <InputField
+            ref={searchRef}
             id={"search"}
             placeholder={"Search..."}
             type={"text"}
