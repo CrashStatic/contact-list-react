@@ -1,5 +1,5 @@
 .modal__input {
-  width: 100%;
+  width: 500px;
 }
 
 .modal__search-area {
@@ -15,4 +15,8 @@
 .modal__button-show {
   width: max-content;
   align-self: center;
+}
+
+.modal__not-found {
+  margin: 0;
 }

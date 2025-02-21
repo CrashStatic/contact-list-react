@@ -29,7 +29,7 @@ export default function Main() {
     setContacts(prevContacts => [...prevContacts, contactWithId]);
   }
 
-  function handleRemoveContacts() {
+  function handleRemoveAllContacts() {
     setContacts([]);
     localStorage.removeItem("contacts");
   }
@@ -53,8 +53,9 @@ export default function Main() {
       <InteractionContainer
         onAddContact={handleAddContact}
         contacts={contacts}
-        onRemoveContacts={handleRemoveContacts}
-        // onEditContact={handleEditContact}
+        handleRemoveAllContacts={handleRemoveAllContacts}
+        onRemoveContact={handleRemoveContact}
+        onEditContact={handleEditContact}
       />
       <ContactTable
         alphabetLeft={ALPHABET_A_M}
