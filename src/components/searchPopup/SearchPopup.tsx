@@ -43,14 +43,13 @@ export default function SearchPopup({
     }
   }
 
+  // Добавляем слушатель нажатия клавиш при монтировании компонента
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => handleEscKeyDown(e);
-
-    document.addEventListener("keydown", handleEsc);
+    document.addEventListener("keydown", handleEscKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleEsc);
-    }
+      document.removeEventListener("keydown", handleEscKeyDown);
+    };
   }, []);
 
   useEffect(() => {
@@ -60,7 +59,7 @@ export default function SearchPopup({
   }, []);
 
   return createPortal(
-    <dialog className="modal" open onClick={handleClickOutside} onKeyDown={e => e.stopPropagation()}>
+    <dialog className="modal" open onClick={handleClickOutside} >
       <div className="modal__container">
         <ModalHeader onClose={onClose}/>
         <div className="modal__body">

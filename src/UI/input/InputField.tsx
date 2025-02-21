@@ -38,7 +38,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({
       if (inputValue.length > 7) formattedValue += ` ${inputValue.substring(7, 9)}`;
       if (inputValue.length > 9) formattedValue += ` ${inputValue.substring(9, 11)}`;
 
-      onChange({ target: { value: formattedValue } } as React.ChangeEvent<HTMLInputElement>);
+      onChange({target: {value: formattedValue}} as React.ChangeEvent<HTMLInputElement>);
     } else {
       onChange(e);
     }
@@ -54,7 +54,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({
         value={value}
         placeholder={placeholder}
         onChange={handleInputChange}
-        ref={ref} // Здесь передаем ref
+        ref={ref}
       />
     </div>
   );
