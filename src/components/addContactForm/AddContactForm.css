@@ -6,10 +6,6 @@
   position: relative;
 }
 
-.form--popup {
-  gap: 25px;
-}
-
 .form__inputs {
   display: flex;
   flex-direction: row;
