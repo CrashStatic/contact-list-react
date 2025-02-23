@@ -38,9 +38,9 @@ const Letter = React.memo(({letter, id, contacts, onRemoveContact, onEditContact
         </span>
       </div>
       <div className={isOpen ? "letter__contacts--open" : "letter__contacts"}>
-        {contacts?.map((contact: Contact, index: number) => (
+        {contacts?.map((contact: Contact) => (
           <ContactCard
-            key={index}
+            key={contact.id}
             name={contact.name}
             position={contact.position}
             phone={contact.phone}
