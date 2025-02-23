@@ -3,7 +3,7 @@ import ContactTable from "../contacTable/ContactTable";
 import {ALPHABET_A_M, ALPHABET_N_Z} from "../../alphabet/Alphabet";
 import './Main.css';
 import {Contact} from "../addContactForm/AddContactForm";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 
 export default function Main() {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -34,19 +34,21 @@ export default function Main() {
     localStorage.removeItem("contacts");
   }
 
-  function handleRemoveContact(name: string) {
-    const updatedContacts = contacts.filter(contact => contact.name !== name);
-    setContacts(updatedContacts);
-    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-  }
+  const handleRemoveContact = useCallback((name: string) => {
+    setContacts((prevContacts) => {
+      const updatedContacts = prevContacts.filter(contact => contact.name !== name);
+      localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+      return updatedContacts;
+    });
+  }, []);
 
-  function handleEditContact(updatedContact: Contact) {
-    const updatedContacts = contacts.map(contact =>
-      contact.id === updatedContact.id ? updatedContact : contact
-    );
-    setContacts(updatedContacts);  // Обновляем состояние с новым контактами
-    localStorage.setItem("contacts", JSON.stringify(updatedContacts));  // Обновляем localStorage
-  }
+  const handleEditContact = useCallback((updatedContact: Contact) => {
+    setContacts((prevContacts) => {
+      const updatedContacts = prevContacts.map(contact => contact.id === updatedContact.id ? updatedContact : contact)
+      localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+      return updatedContacts;
+    })
+  }, [])
 
   return (
     <main className="main">
