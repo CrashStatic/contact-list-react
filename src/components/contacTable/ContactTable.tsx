@@ -9,7 +9,7 @@ interface ContactTableProps {
   alphabetLeft: LetterProps[],
   alphabetRight: LetterProps[],
   contacts: Contact[],
-  onRemoveContact: (name: string) => void,
+  onRemoveContact: (id: string) => void,
   onEditContact: (updateContact: Contact) => void,
 }
 

@@ -17,7 +17,7 @@ export interface AddContactFormProps {
   contacts: Contact[],
   handleRemoveAllContacts: any,
   onEditContact?: ((updatedContact: Contact) => void) | undefined,
-  onRemoveContact: ((name: string) => void) | undefined
+  onRemoveContact: ((id: string) => void) | undefined
 }
 
 export default function AddContactForm({

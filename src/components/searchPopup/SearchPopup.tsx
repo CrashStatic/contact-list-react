@@ -16,7 +16,7 @@ interface SearchPopupProps {
   contacts: Contact[],
   onEditContact?: ((updatedContact: Contact) => void) | undefined,
   handleShowAll: () => void,
-  onRemoveContact: ((name: string) => void) | undefined
+  onRemoveContact: ((id: string) => void) | undefined
 }
 
 export default function SearchPopup({

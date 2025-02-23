@@ -7,7 +7,7 @@ export interface LetterProps {
   letter: string,
   id: string,
   contacts?: Contact[],
-  onRemoveContact?: (name: string) => void,
+  onRemoveContact?: (id: string) => void,
   onEditContact?: (updateContact: Contact) => void
 }
 

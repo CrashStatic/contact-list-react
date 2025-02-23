@@ -11,6 +11,6 @@ export function updateContactList(contacts: Contact[], updatedContact: Contact) 
   );
 }
 
-export function removeContactByName(contacts: Contact[], name: string) {
-  return contacts.filter(contact => contact.name !== name);
+export function removeContact(contacts: Contact[], id: string) {
+  return contacts.filter(contact => contact.id !== id);
 }

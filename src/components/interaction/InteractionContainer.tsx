@@ -6,7 +6,7 @@ interface InteractionContainerProps {
   onAddContact: (contact: Contact) => void,
   contacts: Contact[],
   onEditContact?: (updatedContact: Contact) => void,
-  onRemoveContact?: (name: string) => void,
+  onRemoveContact?: (id: string) => void,
   handleRemoveAllContacts?: () => void
 }
 

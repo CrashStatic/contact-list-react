@@ -11,7 +11,7 @@ interface ContactCardProps {
   position: string,
   phone: string,
   id: string
-  onRemoveContact?: (name: string) => void,
+  onRemoveContact?: (id: string) => void,
   onEditContact?: (contact: Contact) => void,
   contacts: Contact[],
 }
@@ -35,7 +35,7 @@ export default function ContactCard({name, position, phone, id, onRemoveContact,
   }
 
   const deleteContact = () => {
-    onRemoveContact?.(name);
+    onRemoveContact?.(id);
   };
 
   return (
