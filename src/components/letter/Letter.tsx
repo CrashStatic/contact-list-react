@@ -15,10 +15,8 @@ const Letter = React.memo(({letter, id, contacts, onRemoveContact, onEditContact
   const [isOpen, setIsOpen] = useState(false);
 
   function handleToggle(e: React.MouseEvent) {
-    if (e.target instanceof HTMLElement && e.target.closest('.modal')) {
-      return;
-    }
-    setIsOpen(prevState => !prevState);
+    if ((e.target as HTMLElement).closest(".modal")) return;
+    setIsOpen(prev => !prev);
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
