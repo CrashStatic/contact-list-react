@@ -31,7 +31,7 @@ export default function AddContactForm({
   const [position, setPosition] = useState("");
   const [phone, setPhone] = useState("");
 
-  const [isSearchOpen, setSearchOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [filteredContacts, setFilteredContacts] = useState<Contact[]>([]);
 
@@ -61,11 +61,11 @@ export default function AddContactForm({
   };
 
   function handleOpenSearch() {
-    setSearchOpen(true);
+    setIsSearchOpen(true);
   }
 
   function handleCloseSearch() {
-    setSearchOpen(false);
+    setIsSearchOpen(false);
     setSearchInput("");
     setFilteredContacts([]);
   }
