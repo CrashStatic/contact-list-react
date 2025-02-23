@@ -3,6 +3,7 @@ import './ContactTable.css';
 import Letter, {LetterProps} from "../letter/Letter";
 import {Contact} from "../addContactForm/AddContactForm";
 import {useMemo} from "react";
+import {filterContactsByLetter} from "../../hooks/contactUtils";
 
 interface ContactTableProps {
   alphabetLeft: LetterProps[],
@@ -22,14 +23,14 @@ export default function ContactTable({
   const groupedLeft = useMemo(() => {
     return alphabetLeft.map((letter) => ({
       ...letter,
-      contacts: contacts.filter((contact) => contact.name.toLowerCase().startsWith(letter.id)),
+      contacts: filterContactsByLetter(contacts, letter),
     }));
   }, [alphabetLeft, contacts]);
 
   const groupedRight = useMemo(() => {
     return alphabetRight.map((letter) => ({
       ...letter,
-      contacts: contacts.filter((contact) => contact.name.toLowerCase().startsWith(letter.id)),
+      contacts: filterContactsByLetter(contacts, letter),
     }));
   }, [alphabetRight, contacts]);
 

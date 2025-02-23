@@ -3,23 +3,12 @@ import ContactTable from "../contacTable/ContactTable";
 import {ALPHABET_A_M, ALPHABET_N_Z} from "../../alphabet/Alphabet";
 import './Main.css';
 import {Contact} from "../addContactForm/AddContactForm";
-import {useCallback, useEffect, useState} from "react";
+import {useCallback} from "react";
+import {useLocalStorage} from "../../hooks/useLocalStorage";
+import {removeContactByName, updateContactList} from "../../hooks/contactUtils";
 
 export default function Main() {
-  const [contacts, setContacts] = useState<Contact[]>([]);
-
-  useEffect(() => {
-    const savedContacts: string | null = localStorage.getItem("contacts");
-    if (savedContacts) {
-      setContacts(JSON.parse(savedContacts));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (contacts.length > 0) {
-      localStorage.setItem("contacts", JSON.stringify(contacts));
-    }
-  }, [contacts]);
+  const [contacts, setContacts] = useLocalStorage<Contact[]>("contacts", []);
 
   function handleAddContact(newContact: Contact) {
     const contactWithId = {
@@ -31,23 +20,14 @@ export default function Main() {
 
   function handleRemoveAllContacts() {
     setContacts([]);
-    localStorage.removeItem("contacts");
   }
 
   const handleRemoveContact = useCallback((name: string) => {
-    setContacts((prevContacts) => {
-      const updatedContacts = prevContacts.filter(contact => contact.name !== name);
-      localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-      return updatedContacts;
-    });
+    setContacts((prevContacts) => removeContactByName(prevContacts, name));
   }, []);
 
   const handleEditContact = useCallback((updatedContact: Contact) => {
-    setContacts((prevContacts) => {
-      const updatedContacts = prevContacts.map(contact => contact.id === updatedContact.id ? updatedContact : contact)
-      localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-      return updatedContacts;
-    })
+    setContacts((prevContacts) => updateContactList(prevContacts, updatedContact))
   }, [])
 
   return (
