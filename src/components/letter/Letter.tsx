@@ -11,7 +11,7 @@ export interface LetterProps {
   onEditContact?: (updateContact: Contact) => void
 }
 
-export default function Letter({letter, id, contacts, onRemoveContact, onEditContact}: LetterProps) {
+const Letter = React.memo(({letter, id, contacts, onRemoveContact, onEditContact}: LetterProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleToggle(e: React.MouseEvent) {
@@ -55,4 +55,6 @@ export default function Letter({letter, id, contacts, onRemoveContact, onEditCon
       </div>
     </div>
   )
-}
+})
+
+export default Letter;
