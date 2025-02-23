@@ -2,6 +2,7 @@ import '../../index.css';
 import './ContactTable.css';
 import Letter, {LetterProps} from "../letter/Letter";
 import {Contact} from "../addContactForm/AddContactForm";
+import {useMemo} from "react";
 
 interface ContactTableProps {
   alphabetLeft: LetterProps[],
@@ -18,20 +19,19 @@ export default function ContactTable({
                                        onRemoveContact,
                                        onEditContact
                                      }: ContactTableProps) {
-  function groupContactsByLetter(alphabet: LetterProps[]) {
-    return alphabet.map((letter) => {
-      const contactsForLetter = contacts.filter(
-        (contact) => contact.name.toLowerCase().startsWith(letter.id)
-      );
-      return {
-        ...letter,
-        contacts: contactsForLetter
-      };
-    })
-  }
+  const groupedLeft = useMemo(() => {
+    return alphabetLeft.map((letter) => ({
+      ...letter,
+      contacts: contacts.filter((contact) => contact.name.toLowerCase().startsWith(letter.id)),
+    }));
+  }, [alphabetLeft, contacts]);
 
-  const groupedLeft = groupContactsByLetter(alphabetLeft);
-  const groupedRight = groupContactsByLetter(alphabetRight);
+  const groupedRight = useMemo(() => {
+    return alphabetRight.map((letter) => ({
+      ...letter,
+      contacts: contacts.filter((contact) => contact.name.toLowerCase().startsWith(letter.id)),
+    }));
+  }, [alphabetRight, contacts]);
 
   return (
     <section className="contact-table" aria-live="assertive">
