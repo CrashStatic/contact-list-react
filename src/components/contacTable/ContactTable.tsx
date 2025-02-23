@@ -2,8 +2,8 @@ import '../../index.css';
 import './ContactTable.css';
 import Letter, {LetterProps} from "../letter/Letter";
 import {Contact} from "../addContactForm/AddContactForm";
-import {useMemo} from "react";
-import {filterContactsByLetter} from "../../hooks/contactUtils";
+import React, {useMemo} from "react";
+import {filterContactsByLetter} from "../../utils/contactUtils";
 
 interface ContactTableProps {
   alphabetLeft: LetterProps[],
@@ -13,26 +13,26 @@ interface ContactTableProps {
   onEditContact: (updateContact: Contact) => void,
 }
 
-export default function ContactTable({
+const ContactTable = React.memo(({
                                        alphabetLeft,
                                        alphabetRight,
                                        contacts,
                                        onRemoveContact,
                                        onEditContact
-                                     }: ContactTableProps) {
+                                     }: ContactTableProps) => {
   const groupedLeft = useMemo(() => {
     return alphabetLeft.map((letter) => ({
       ...letter,
       contacts: filterContactsByLetter(contacts, letter),
     }));
-  }, [alphabetLeft, contacts]);
+  }, [contacts]);
 
   const groupedRight = useMemo(() => {
     return alphabetRight.map((letter) => ({
       ...letter,
       contacts: filterContactsByLetter(contacts, letter),
     }));
-  }, [alphabetRight, contacts]);
+  }, [contacts]);
 
   return (
     <section className="contact-table" aria-live="assertive">
@@ -63,4 +63,6 @@ export default function ContactTable({
       </div>
     </section>
   )
-}
+})
+
+export default ContactTable;

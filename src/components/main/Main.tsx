@@ -5,7 +5,7 @@ import './Main.css';
 import {Contact} from "../addContactForm/AddContactForm";
 import {useCallback} from "react";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
-import {removeContactByName, updateContactList} from "../../hooks/contactUtils";
+import {removeContactByName, updateContactList} from "../../utils/contactUtils";
 
 export default function Main() {
   const [contacts, setContacts] = useLocalStorage<Contact[]>("contacts", []);
@@ -24,11 +24,11 @@ export default function Main() {
 
   const handleRemoveContact = useCallback((name: string) => {
     setContacts((prevContacts) => removeContactByName(prevContacts, name));
-  }, []);
+  }, [setContacts]);
 
   const handleEditContact = useCallback((updatedContact: Contact) => {
     setContacts((prevContacts) => updateContactList(prevContacts, updatedContact))
-  }, [])
+  }, [setContacts])
 
   return (
     <main className="main">

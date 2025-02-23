@@ -1,4 +1,4 @@
-import {MouseEventHandler, useState} from "react";
+import {useState} from "react";
 import Button from "../../UI/button/Button";
 import cross from '../../assets/cross.svg';
 import pencil from '../../assets/pencil.svg';
@@ -34,10 +34,8 @@ export default function ContactCard({name, position, phone, id, onRemoveContact,
     setIsEditing(false);
   }
 
-  const deleteContact: MouseEventHandler<HTMLButtonElement> = () => {
-    if (onRemoveContact) {
-      onRemoveContact(name);
-    }
+  const deleteContact = () => {
+    onRemoveContact?.(name);
   };
 
   return (

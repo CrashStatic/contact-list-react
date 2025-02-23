@@ -2,8 +2,8 @@ import Button from "../../UI/button/Button";
 import './AddContactForm.css';
 import InputField from "../../UI/input/InputField";
 import React, { useEffect, useState} from "react";
-import {validateForm} from "../../validate/validate";
 import SearchPopup from "../searchPopup/SearchPopup";
+import {useValidation} from "../../hooks/useValidation";
 
 export interface Contact {
   name: string;
@@ -31,45 +31,29 @@ export default function AddContactForm({
   const [position, setPosition] = useState("");
   const [phone, setPhone] = useState("");
 
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [currentError, setCurrentError] = useState<string | null>(null);
-
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [filteredContacts, setFilteredContacts] = useState<Contact[]>([]);
 
+  const { errors, currentError, validate } = useValidation(contacts);
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const validationErrors = validateForm([name, position, phone], contacts);
+    if (!validate([name, position, phone])) return;
 
-    if (validationErrors.isValid) {
-      const newContact: Contact = {
-        name,
-        position,
-        phone,
-        id: Date.now().toString()
-      };
+    const newContact: Contact = {
+      name,
+      position,
+      phone,
+      id: Date.now().toString()
+    };
 
-      onAddContact(newContact);
+    onAddContact(newContact);
 
-      setName("");
-      setPosition("");
-      setPhone("");
-      setErrors({});
-      setCurrentError(null);
-    } else {
-      const errorMessages: { [key: string]: string } = {};
-
-      validationErrors.errors.forEach((error) => {
-        if (error.input) {
-          errorMessages[error.input] = error.message;
-        }
-      });
-
-      setErrors(errorMessages);
-      setCurrentError(Object.keys(errorMessages)[0]);
-    }
+    setName("");
+    setPosition("");
+    setPhone("");
   }
 
   const getInputClassName = (field: string) => {
@@ -105,8 +89,8 @@ export default function AddContactForm({
   }, [contacts, searchInput]);
 
   function handleShowAll() {
-    setSearchInput("");  // Очищаем поле поиска
-    setFilteredContacts(contacts);  // Показываем все контакты
+    setSearchInput("");
+    setFilteredContacts(contacts);
   }
 
   return (

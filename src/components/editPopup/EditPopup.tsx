@@ -5,8 +5,8 @@ import ModalHeader from "../modal/ModalHeader";
 import './EditPopup.css';
 import '../modal/Modal.css';
 import {Contact} from "../addContactForm/AddContactForm";
-import {validateForm} from "../../validate/validate";
 import {createPortal} from "react-dom";
+import {useValidation} from "../../hooks/useValidation";
 
 interface EditPopupProps {
   contact: Contact;
@@ -19,34 +19,20 @@ export default function EditPopup({contact, onSave, onClose, contacts}: EditPopu
   const [name, setName] = useState(contact.name);
   const [position, setPosition] = useState(contact.position);
   const [phone, setPhone] = useState(contact.phone);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [currentError, setCurrentError] = useState<string | null>(null);
+
   const nameInputRef = useRef<HTMLInputElement>(null);
+
+  const { errors, currentError, validate } = useValidation(contacts);
 
   function handleSave(e: React.FormEvent) {
     e.preventDefault();
 
     const updatedContact = { ...contact, name, position, phone };
 
-    const validationErrors = validateForm([name, position, phone], contacts);
+    if (!validate([name, position, phone])) return;
 
-    if (validationErrors.isValid) {
-      onSave(updatedContact);
-      onClose();
-      setErrors({});
-      setCurrentError(null);
-    } else {
-      const errorMessages: { [key: string]: string } = {};
-
-      validationErrors.errors.forEach((error) => {
-        if (error.input) {
-          errorMessages[error.input] = error.message;
-        }
-      });
-
-      setErrors(errorMessages);
-      setCurrentError(Object.keys(errorMessages)[0]);
-    }
+    onSave(updatedContact);
+    onClose();
   }
 
   const getInputClassName = (field: string) => {
