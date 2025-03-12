@@ -15,8 +15,8 @@
 .form__error {
   position: absolute;
   bottom: 42px;
-  color: #ff0000;
-  font-size: 16px;
+  color: var(--error);
+  font-size: 1rem;
   margin: 0;
 }
 

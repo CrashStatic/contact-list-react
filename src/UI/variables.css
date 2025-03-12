@@ -1,0 +1,34 @@
+:root {
+  /* Шрифты */
+  --font-family: "Montserrat", "Arial", sans-serif;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Цвета */
+  --primary-text: #2d383f;
+  --primary-bg: #d3bcef;
+  --primary-border: #9568cf;
+  --primary-hover: #f0abdf;
+
+  --interaction-bg: #efbae2;
+  --interaction-border: #a49898;
+
+  --letter-border: #8c8181;
+  --letter-hover: #eca0d9;
+
+  --message-bg: #e5aff5;
+  --message-border: #ff237e;
+
+  --modal-border: #a49898;
+
+  --error: #ff0000;
+  --input-error-bg: #f2979f;
+  --input-error-border: #f40000;
+  --input-hover-border: #252525;
+
+  --overlay: rgba(0, 0, 0, 0.5);
+  --base-white: #ffffff;
+
+  /* Градиенты */
+  --primary-gradient: linear-gradient(180deg, #d1b6fd 30%, #fccfd4 100%);
+}

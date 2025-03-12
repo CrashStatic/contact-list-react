@@ -12,7 +12,7 @@
 
 .modal[open] {
   visibility: visible;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--overlay);
 }
 
 .modal__container {
@@ -24,10 +24,10 @@
   flex-direction: column;
   z-index: 2;
   min-width: 300px;
-  background-color: #ffffff;
+  background-color: var(--base-white);
   margin: auto;
   border-radius: 5px;
-  border: 1px solid #a49898;
+  border: 1px solid var(--modal-border);
 }
 
 .modal__body {

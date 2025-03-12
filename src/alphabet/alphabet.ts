@@ -1,4 +1,4 @@
-const ALPHABET_A_M = [
+const ALPHABET = [
   {
     letter: 'A',
     id: 'a'
@@ -51,9 +51,6 @@ const ALPHABET_A_M = [
     letter: 'M',
     id: 'm'
   },
-];
-
-const ALPHABET_N_Z = [
   {
     letter: 'N',
     id: 'n'
@@ -108,4 +105,4 @@ const ALPHABET_N_Z = [
   },
 ];
 
-export { ALPHABET_A_M, ALPHABET_N_Z };
+export { ALPHABET };

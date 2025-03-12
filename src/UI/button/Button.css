@@ -1,16 +1,18 @@
+@import '../variables.css';
+
 .button {
-  font-family: "Montserrat", "Arial", sans-serif;
-  font-weight: 500;
-  background-color: #d3bcef;
+  font-family: var(--font-family), sans-serif;
+  font-weight: var(--font-weight-medium);
+  background-color: var(--primary-bg);
   border-radius: 5px;
-  border: 2px solid #9568cf;
+  border: 2px solid var(--primary-border);
   padding: 5px;
   min-width: 100px;
   cursor: pointer;
 
   &:hover,
   &:focus-visible {
-    background-color: #f0abdf;
+    background-color: var(--primary-hover);
   }
 
   &:focus {
@@ -23,15 +25,15 @@
   width: 20px;
   height: 20px;
   position: relative;
-  background-color: #efbae2;
-  border: 1px solid #a49898;
+  background-color: var(--interaction-bg);
+  border: 1px solid var(--interaction-border);
   cursor: pointer;
   justify-content: center;
   align-items: center;
 
   &:hover,
   &:focus-visible {
-    background-color: #f0abdf;
+    background-color: var(--primary-hover);
   }
 
   &:focus {

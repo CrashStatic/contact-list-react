@@ -5,9 +5,9 @@
 .modal__search-area {
   width: 500px;
   height: 350px;
-  background-color: #d3bcef;
+  background-color:var(--primary-bg);
   border-radius: 5px;
-  border: 1px solid #a49898;
+  border: 1px solid var(--interaction-border);
   padding: 10px;
   overflow: auto;
 }

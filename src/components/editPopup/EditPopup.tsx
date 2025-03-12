@@ -36,7 +36,7 @@ export default function EditPopup({contact, onSave, onClose, contacts}: EditPopu
   }
 
   const getInputClassName = (field: string) => {
-    return `input${errors[field] ? " input--error" : ""}`;
+    return `input${errors && errors[field] ? " input--error" : ""}`;
   };
 
   function handleClickOutsidePopup(e: React.MouseEvent) {
@@ -74,7 +74,7 @@ export default function EditPopup({contact, onSave, onClose, contacts}: EditPopu
         <div className="modal__body" id="modal-body">
           {currentError && (
             <p className="popup__error" aria-live="assertive">
-              {errors[currentError]}
+              {errors && errors[currentError]}
             </p>
           )}
           <form className="popup__form form" action="#" method="post" name="popup-contact-add" onSubmit={handleSave}>

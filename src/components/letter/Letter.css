@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 250px;
-  background-color: #efbae2;
-  border: 1px solid #8c8181;
+  background-color: var(--interaction-bg);
+  border: 1px solid var(--letter-border);
   border-bottom: none;
   cursor: pointer;
 
   &:hover,
   &:focus-visible {
-    background-color: #eca0d9;
+    background-color: var(--letter-hover);
   }
 
   &:focus {
@@ -18,19 +18,19 @@
 }
 
 .letter:last-of-type {
-  border-bottom: 1px solid #8c8181;
+  border-bottom: 1px solid var(--letter-border);
 }
 
 .letter--active {
-  background-color: #e5aff5;
+  background-color: var(--message-bg);
 
   &:focus-visible {
-    background-color: #eca0d9;
+    background-color: var(--letter-hover);
   }
 
   &:focus {
     outline: none;
-    background-color: #eca0d9;
+    background-color: var(--letter-hover);
   }
 }
 
@@ -42,7 +42,7 @@
 }
 
 .letter__letter {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .letter__counter {
@@ -51,7 +51,7 @@
 
 .letter__counter--active {
   display: block;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .letter__contacts {
