@@ -57,7 +57,7 @@ export default function AddContactForm({
   }
 
   const getInputClassName = (field: string) => {
-    return `input${errors[field] ? " input--error" : ""}`;
+    return `input${errors && errors[field] ? " input--error" : ""}`;
   };
 
   function handleOpenSearch() {
@@ -126,7 +126,7 @@ export default function AddContactForm({
           />
         </div>
 
-        {currentError && (
+        {currentError && errors && (
           <p className="form__error" aria-live="assertive">
             {errors[currentError]}
           </p>

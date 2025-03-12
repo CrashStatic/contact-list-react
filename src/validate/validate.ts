@@ -7,7 +7,7 @@ interface Error {
   message: string
 }
 
-interface Validate {
+export interface Validate {
   isValid: boolean;
   errors: Error[];
 }

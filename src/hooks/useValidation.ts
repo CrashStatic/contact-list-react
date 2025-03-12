@@ -1,13 +1,14 @@
 import { useState, useCallback } from "react";
 import { Contact } from "../components/addContactForm/AddContactForm";
-import {validateForm} from "../validate/validate";
+import {Validate, validateForm} from "../validate/validate";
+import {CurrentError, ValidateFunction, ValidationErrors} from "./types";
 
 export function useValidation(contacts: Contact[]) {
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [currentError, setCurrentError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<ValidationErrors>(null);
+  const [currentError, setCurrentError] = useState<CurrentError>(null);
 
-  const validate = useCallback((fields: string[]) => {
-    const validationErrors = validateForm(fields, contacts);
+  const validate: ValidateFunction = useCallback((fields: string[]) => {
+    const validationErrors: Validate = validateForm(fields, contacts);
 
     if (!validationErrors.isValid) {
       const errorMessages = Object.fromEntries(
@@ -18,7 +19,7 @@ export function useValidation(contacts: Contact[]) {
       return false;
     }
 
-    setErrors({});
+    setErrors(null);
     setCurrentError(null);
     return true;
   }, [contacts]);

@@ -1,6 +1,6 @@
 import InteractionContainer from "../interaction/InteractionContainer";
 import ContactTable from "../contacTable/ContactTable";
-import {ALPHABET_A_M, ALPHABET_N_Z} from "../../alphabet/Alphabet";
+import {ALPHABET_A_M, ALPHABET_N_Z} from "../../alphabet/alphabet";
 import './Main.css';
 import {Contact} from "../addContactForm/AddContactForm";
 import {useCallback} from "react";
