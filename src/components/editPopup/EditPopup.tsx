@@ -51,16 +51,6 @@ export default function EditPopup({contact, onSave, onClose, contacts}: EditPopu
     }
   }
 
-  // useEffect(() => {
-  //   const handleEsc = (e: KeyboardEvent) => handleEscKeyDown(e);
-  //
-  //   document.addEventListener("keydown", handleEsc as EventListener);
-  //
-  //   return () => {
-  //     document.removeEventListener('keydown', handleEsc as EventListener)
-  //   }
-  // }, [])
-
   useEffect(() => {
     if (nameInputRef.current) {
       nameInputRef.current.focus();
