@@ -1,6 +1,5 @@
 import InteractionContainer from "../interaction/InteractionContainer";
 import ContactTable from "../contacTable/ContactTable";
-import { ALPHABET } from "../../alphabet/alphabet";
 import './Main.css';
 import {Contact} from "../addContactForm/AddContactForm";
 import {useCallback} from "react";
@@ -40,7 +39,6 @@ export default function Main() {
         onEditContact={handleEditContact}
       />
       <ContactTable
-        alphabet={ALPHABET}
         contacts={contacts}
         onRemoveContact={handleRemoveContact}
         onEditContact={handleEditContact}

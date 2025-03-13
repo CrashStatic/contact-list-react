@@ -1,25 +1,24 @@
 import '../../index.css';
 import './ContactTable.css';
-import Letter, {LetterProps} from "../letter/Letter";
+import Letter from "../letter/Letter";
 import {Contact} from "../addContactForm/AddContactForm";
 import React, {useMemo} from "react";
 import {filterContactsByLetter} from "../../utils/contactUtils";
+import {ALPHABET} from "../../alphabet/alphabet";
 
 interface ContactTableProps {
-  alphabet: LetterProps[],
   contacts: Contact[],
   onRemoveContact: (id: string) => void,
   onEditContact: (updateContact: Contact) => void,
 }
 
 const ContactTable = React.memo(({
-                                       alphabet,
                                        contacts,
                                        onRemoveContact,
                                        onEditContact
                                      }: ContactTableProps) => {
   const groupedLetters = useMemo(() => {
-    return alphabet.map((letter) => ({
+    return ALPHABET.map((letter) => ({
       ...letter,
       contacts: filterContactsByLetter(contacts, letter),
     }));
