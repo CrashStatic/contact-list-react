@@ -45,21 +45,21 @@ export default function EditPopup({contact, onSave, onClose, contacts}: EditPopu
     }
   }
 
-  function handleEscKeyDown(e: KeyboardEvent) {
+  function handleEscKeyDown(e: React.KeyboardEvent<HTMLDialogElement>) {
     if (e.key === "Escape") {
       onClose();
     }
   }
 
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => handleEscKeyDown(e);
-
-    document.addEventListener("keydown", handleEsc as EventListener);
-
-    return () => {
-      document.removeEventListener('keydown', handleEsc as EventListener)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const handleEsc = (e: KeyboardEvent) => handleEscKeyDown(e);
+  //
+  //   document.addEventListener("keydown", handleEsc as EventListener);
+  //
+  //   return () => {
+  //     document.removeEventListener('keydown', handleEsc as EventListener)
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (nameInputRef.current) {
@@ -68,7 +68,7 @@ export default function EditPopup({contact, onSave, onClose, contacts}: EditPopu
   }, []);
 
   return createPortal(
-    <dialog className="modal edit-popup" open onClick={handleClickOutsidePopup} >
+    <dialog className="modal edit-popup" open onClick={handleClickOutsidePopup} onKeyDown={handleEscKeyDown}>
       <div className="modal__container">
         <ModalHeader onClose={onClose}/>
         <div className="modal__body" id="modal-body">
