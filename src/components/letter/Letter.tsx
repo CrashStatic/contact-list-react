@@ -25,19 +25,24 @@ const Letter = React.memo(({letter, id, contacts, onRemoveContact, onEditContact
     }
   }
 
+  const hasContacts = contacts && contacts.length > 0;
+  const letterClassName = hasContacts ? "letter letter--active" : "letter";
+  const counterClassName = hasContacts ? "letter__counter--active" : "letter__counter";
+  const contactsClassName = isOpen ? "letter__contacts--open" : "letter__contacts";
+
   return (
     <div
-      className={contacts?.length && contacts?.length > 0 ? 'letter letter--active' : 'letter'}
+      className={letterClassName}
       tabIndex={0}
       onClick={handleToggle}
       onKeyDown={handleKeyDown}>
       <div className="letter__container">
         <div className="letter__letter" data-id={id}>{letter}</div>
-        <span className={contacts?.length && contacts?.length > 0 ? 'letter__counter--active' : 'letter__counter'}>
+        <span className={counterClassName}>
           {contacts?.length}
         </span>
       </div>
-      <div className={isOpen ? "letter__contacts--open" : "letter__contacts"}>
+      <div className={contactsClassName}>
         {contacts?.map((contact: Contact) => (
           <ContactCard
             key={contact.id}
