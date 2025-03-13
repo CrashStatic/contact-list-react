@@ -6,9 +6,9 @@ import './SearchPopup.css';
 import '../modal/Modal.css';
 import {Contact} from "../addContactForm/AddContactForm";
 import React, {useEffect, useRef} from "react";
-import ContactCard from "../contactCard/ContactCard";
+import SearchArea from "./SearchArea";
 
-interface SearchPopupProps {
+export interface SearchPopupProps {
   onClose: () => void,
   input: string,
   filteredContacts: Contact[],
@@ -71,24 +71,12 @@ export default function SearchPopup({
             value={input}
             onChange={onInputChange}
             className={"modal__input input"}/>
-          <div className="modal__search-area">
-            {filteredContacts.length > 0 ? (
-              filteredContacts.map((contact) => (
-                <ContactCard
-                  key={contact.id}
-                  name={contact.name}
-                  position={contact.position}
-                  phone={contact.phone}
-                  id={contact.id}
-                  contacts={contacts}
-                  onRemoveContact={onRemoveContact}
-                  onEditContact={onEditContact}
-                />
-              ))
-            ) : (
-              <p className={"modal__not-found"}>No contacts found</p>
-            )}
-          </div>
+          <SearchArea
+            filteredContacts={filteredContacts}
+            onRemoveContact={onRemoveContact}
+            onEditContact={onEditContact}
+            contacts={contacts}
+          />
           <Button
             className="modal__button-show button"
             type="button" ariaLabel={"Show all contacts"}
