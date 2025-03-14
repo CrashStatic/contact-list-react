@@ -1,8 +1,5 @@
 .contact-table {
   display: flex;
-  /*flex-direction: row;*/
-  /*gap: 30px;*/
-  /*max-width: 550px;*/
 }
 
 .contact-table__grid {
@@ -13,10 +10,3 @@
   grid-auto-flow: column;
   column-gap: 30px;
 }
-
-/*.contact-table__grid {*/
-/*  display: grid;*/
-/*  grid-template-columns: repeat(2, 1fr);*/
-/*  gap: 30px;*/
-/*  grid-auto-flow: row; !* Изменено *!*/
-/*}*/
