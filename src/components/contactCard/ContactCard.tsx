@@ -6,7 +6,6 @@ import './ContactCard.css';
 import EditPopup from "../editPopup/EditPopup";
 import {Contact, ContactCardProps} from "../../types/types";
 
-
 export default function ContactCard({name, position, phone, id, onRemoveContact, onEditContact, contacts}: ContactCardProps) {
   const [isEditing, setIsEditing] = useState(false);
 

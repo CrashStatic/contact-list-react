@@ -3,7 +3,7 @@ import './ContactTable.css';
 import Letter from "../letter/Letter";
 import React, {useMemo} from "react";
 import {filterContactsByLetter} from "../../utils/contactUtils";
-import {ALPHABET} from "../../alphabet/alphabet";
+import {Constants} from "../../constants/constants";
 import {ContactTableProps} from "../../types/types";
 
 const ContactTable = React.memo(({
@@ -12,7 +12,7 @@ const ContactTable = React.memo(({
                                        onEditContact
                                      }: ContactTableProps) => {
   const groupedLetters = useMemo(() => {
-    return ALPHABET.map((letter) => ({
+    return Constants.map((letter) => ({
       ...letter,
       contacts: filterContactsByLetter(contacts, letter),
     }));

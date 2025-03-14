@@ -1,6 +1,5 @@
 import {Contact, ErrorInput} from "../types/types";
-
-const MINIMUM_LENGTH = 3;
+import {MINIMUM_LENGTH} from "../constants/constants";
 
 export function validateEmptyFields(inputs: string[]): ErrorInput[] {
   const errors: ErrorInput[] = [];

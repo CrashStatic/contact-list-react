@@ -1,4 +1,4 @@
-const PHONE_PREFIX = "+7";
+import {PHONE_PREFIX} from "../constants/constants";
 
 export function formatPhoneNumber(value: string): string {
   let inputValue = value.replace(/\D/g, '');

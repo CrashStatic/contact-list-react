@@ -1,4 +1,4 @@
-const ALPHABET = [
+export const Constants = [
   {
     letter: 'A',
     id: 'a'
@@ -105,4 +105,6 @@ const ALPHABET = [
   },
 ];
 
-export { ALPHABET };
+export const PHONE_PREFIX = "+7";
+
+export const MINIMUM_LENGTH = 3;
