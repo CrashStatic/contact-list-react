@@ -4,20 +4,9 @@ import InputField from "../../UI/input/InputField";
 import Button from "../../UI/button/Button";
 import './SearchPopup.css';
 import '../modal/Modal.css';
-import {Contact} from "../addContactForm/AddContactForm";
 import React, {useEffect, useRef} from "react";
 import SearchArea from "./SearchArea";
-
-export interface SearchPopupProps {
-  onClose: () => void,
-  input: string,
-  filteredContacts: Contact[],
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  contacts: Contact[],
-  onEditContact?: ((updatedContact: Contact) => void) | undefined,
-  handleShowAll: () => void,
-  onRemoveContact: ((id: string) => void) | undefined
-}
+import {SearchPopupProps} from "../../types/types";
 
 export default function SearchPopup({
                                       onClose,

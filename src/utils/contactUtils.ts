@@ -1,5 +1,4 @@
-import {Contact} from "../components/addContactForm/AddContactForm";
-import {LetterProps} from "../components/letter/Letter";
+import {Contact, LetterProps} from "../types/types";
 
 export function filterContactsByLetter(contacts: Contact[], letter: LetterProps) {
   return contacts.filter(contact => contact.name.toLowerCase().startsWith(letter.id));

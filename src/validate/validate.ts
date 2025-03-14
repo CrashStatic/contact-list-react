@@ -1,19 +1,9 @@
-import {Contact} from "../components/addContactForm/AddContactForm";
+import {Contact, ErrorInput} from "../types/types";
 
 const MINIMUM_LENGTH = 3;
 
-interface Error {
-  input: string | null;
-  message: string
-}
-
-export interface Validate {
-  isValid: boolean;
-  errors: Error[];
-}
-
-export function validateEmptyFields(inputs: string[]): Error[] {
-  const errors: Error[] = [];
+export function validateEmptyFields(inputs: string[]): ErrorInput[] {
+  const errors: ErrorInput[] = [];
   const fields = ["name", "position", "phone"];
 
   inputs.forEach((input, index) => {
@@ -24,7 +14,7 @@ export function validateEmptyFields(inputs: string[]): Error[] {
   return errors;
 }
 
-export function validateContactUniqueness(storage: Contact[], contact: Omit<Contact, 'id'>): Error[] {
+export function validateContactUniqueness(storage: Contact[], contact: Omit<Contact, 'id'>): ErrorInput[] {
   const existingContact = storage.some((existingContact) => (
     existingContact.name.toLowerCase() === contact.name.toLowerCase() &&
     existingContact.position.toLowerCase() === contact.position.toLowerCase() &&
@@ -35,7 +25,7 @@ export function validateContactUniqueness(storage: Contact[], contact: Omit<Cont
     : [];
 }
 
-function validateLetters(input: string, minLength: number, field: string): Error[] {
+function validateLetters(input: string, minLength: number, field: string): ErrorInput[] {
   const errors = [];
   const regLetters = /^[a-zA-Z]+$/;
 
@@ -48,15 +38,15 @@ function validateLetters(input: string, minLength: number, field: string): Error
   return errors;
 }
 
-function validatePhone(phone: string): Error[] {
+function validatePhone(phone: string): ErrorInput[] {
   const regNumbers = /^\+7 \d{3} \d{3} \d{2} \d{2}$/;
   return !regNumbers.test(phone)
     ? [{ input: 'phone', message: 'Wrong number!' }]
     : [];
 }
 
-export function validateForm(inputs: string[], storage: Contact[]): Validate {
-  const errors: Error[] = [];
+export function validateForm(inputs: string[], storage: Contact[]): { isValid: boolean; errors: ErrorInput[] } {
+  const errors: ErrorInput[] = [];
 
   const contactToValidate: Omit<Contact, 'id'> = {
     name: inputs[0],

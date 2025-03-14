@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
-import { Contact } from "../components/addContactForm/AddContactForm";
-import {Validate, validateForm} from "../validate/validate";
-import {CurrentError, ValidateFunction, ValidationErrors} from "./types";
+import { validateForm} from "../validate/validate";
+import {Contact, CurrentError, Validate, ValidateFunction, ValidationErrors} from "../types/types";
 
 export function useValidation(contacts: Contact[]) {
   const [errors, setErrors] = useState<ValidationErrors>(null);

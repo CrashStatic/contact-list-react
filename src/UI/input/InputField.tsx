@@ -1,11 +1,7 @@
 import './InputField.css';
 import React, {forwardRef} from "react";
 import {formatPhoneNumber} from "../../utils/phoneFormatter";
-
-interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  id: string;
-  label?: string;
-}
+import {InputFieldProps} from "../../types/types";
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({
                                                                     id,

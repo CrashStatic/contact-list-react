@@ -4,16 +4,9 @@ import Button from "../../UI/button/Button.js";
 import ModalHeader from "../modal/ModalHeader";
 import './EditPopup.css';
 import '../modal/Modal.css';
-import {Contact} from "../addContactForm/AddContactForm";
 import {createPortal} from "react-dom";
 import {useValidation} from "../../hooks/useValidation";
-
-interface EditPopupProps {
-  contact: Contact;
-  contacts: Contact[];
-  onClose: () => void;
-  onSave: (contact: Contact) => void;
-}
+import {EditPopupProps} from "../../types/types";
 
 export default function EditPopup({contact, onSave, onClose, contacts}: EditPopupProps) {
   const [name, setName] = useState(contact.name);

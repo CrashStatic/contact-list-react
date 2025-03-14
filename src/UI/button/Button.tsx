@@ -1,10 +1,6 @@
 import React from "react";
 import './Button.css';
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  ariaLabel: string,
-  children: React.ReactNode,
-}
+import {ButtonProps} from "../../types/types";
 
 export default function Button({children, ariaLabel, className, ...props}: ButtonProps) {
   return (

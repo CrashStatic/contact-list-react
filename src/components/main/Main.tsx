@@ -1,10 +1,10 @@
 import InteractionContainer from "../interaction/InteractionContainer";
 import ContactTable from "../contacTable/ContactTable";
 import './Main.css';
-import {Contact} from "../addContactForm/AddContactForm";
 import {useCallback} from "react";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
 import {removeContact, updateContactList} from "../../utils/contactUtils";
+import {Contact} from "../../types/types";
 
 export default function Main() {
   const [contacts, setContacts] = useLocalStorage<Contact[]>("contacts", []);

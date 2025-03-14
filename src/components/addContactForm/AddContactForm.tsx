@@ -4,21 +4,7 @@ import InputField from "../../UI/input/InputField";
 import React, { useEffect, useState} from "react";
 import SearchPopup from "../searchPopup/SearchPopup";
 import {useValidation} from "../../hooks/useValidation";
-
-export interface Contact {
-  name: string;
-  position: string;
-  phone: string;
-  id: string;
-}
-
-export interface AddContactFormProps {
-  onAddContact: (contact: Contact) => void,
-  contacts: Contact[],
-  handleRemoveAllContacts: any,
-  onEditContact?: ((updatedContact: Contact) => void) | undefined,
-  onRemoveContact: ((id: string) => void) | undefined
-}
+import {AddContactFormProps, Contact} from "../../types/types";
 
 export default function AddContactForm({
                                          onAddContact,

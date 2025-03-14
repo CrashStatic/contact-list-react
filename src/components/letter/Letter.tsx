@@ -1,15 +1,7 @@
 import "./Letter.css";
-import {Contact} from "../addContactForm/AddContactForm";
 import ContactCard from "../contactCard/ContactCard";
 import React, {useState} from "react";
-
-export interface LetterProps {
-  letter: string,
-  id: string,
-  contacts?: Contact[],
-  onRemoveContact?: (id: string) => void,
-  onEditContact?: (updateContact: Contact) => void
-}
+import {Contact, LetterProps} from "../../types/types";
 
 const Letter = React.memo(({letter, id, contacts, onRemoveContact, onEditContact}: LetterProps) => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,14 +1,7 @@
 import '../../index.css';
 import './InteractionContainer.css';
-import AddContactForm, {Contact} from "../addContactForm/AddContactForm";
-
-interface InteractionContainerProps {
-  onAddContact: (contact: Contact) => void,
-  contacts: Contact[],
-  onEditContact?: (updatedContact: Contact) => void,
-  onRemoveContact?: (id: string) => void,
-  handleRemoveAllContacts?: () => void
-}
+import AddContactForm from "../addContactForm/AddContactForm";
+import {AddContactFormProps} from "../../types/types";
 
 export default function InteractionContainer({
                                                onAddContact,
@@ -16,7 +9,7 @@ export default function InteractionContainer({
                                                onEditContact,
                                                onRemoveContact,
                                                handleRemoveAllContacts
-                                             }: InteractionContainerProps) {
+                                             }: AddContactFormProps) {
   return (
     <section className="interaction">
       <h2 className="visually-hidden">Contact information form</h2>

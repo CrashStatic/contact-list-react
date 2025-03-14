@@ -1,9 +1,7 @@
 import ContactCard from "../contactCard/ContactCard";
 import React from "react";
 import './SearchPopup.css';
-import {SearchPopupProps} from "./SearchPopup";
-
-interface SearchAreaProps extends Pick<SearchPopupProps, 'filteredContacts' | 'onRemoveContact' | 'onEditContact' | 'contacts'> {}
+import {SearchAreaProps} from "../../types/types";
 
 export default function SearchArea({filteredContacts, onRemoveContact, onEditContact, contacts}: SearchAreaProps) {
   return (

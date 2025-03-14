@@ -3,18 +3,9 @@ import Button from "../../UI/button/Button";
 import cross from '../../assets/cross.svg';
 import pencil from '../../assets/pencil.svg';
 import './ContactCard.css';
-import {Contact} from "../addContactForm/AddContactForm";
 import EditPopup from "../editPopup/EditPopup";
+import {Contact, ContactCardProps} from "../../types/types";
 
-interface ContactCardProps {
-  name: string,
-  position: string,
-  phone: string,
-  id: string
-  onRemoveContact?: (id: string) => void,
-  onEditContact?: (contact: Contact) => void,
-  contacts: Contact[],
-}
 
 export default function ContactCard({name, position, phone, id, onRemoveContact, onEditContact, contacts}: ContactCardProps) {
   const [isEditing, setIsEditing] = useState(false);

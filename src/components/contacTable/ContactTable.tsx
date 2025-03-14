@@ -1,16 +1,10 @@
 import '../../index.css';
 import './ContactTable.css';
 import Letter from "../letter/Letter";
-import {Contact} from "../addContactForm/AddContactForm";
 import React, {useMemo} from "react";
 import {filterContactsByLetter} from "../../utils/contactUtils";
 import {ALPHABET} from "../../alphabet/alphabet";
-
-interface ContactTableProps {
-  contacts: Contact[],
-  onRemoveContact: (id: string) => void,
-  onEditContact: (updateContact: Contact) => void,
-}
+import {ContactTableProps} from "../../types/types";
 
 const ContactTable = React.memo(({
                                        contacts,
