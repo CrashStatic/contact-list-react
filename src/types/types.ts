@@ -12,17 +12,17 @@ export interface Contact {
 }
 
 export interface AddContactFormProps {
-  onAddContact: (contact: Contact) => void,
-  contacts: Contact[],
-  handleRemoveAllContacts: any,
-  onEditContact: ((updatedContact: Contact) => void),
+  addContact: (contact: Contact) => void;
+  contacts: Contact[];
+  handleRemoveAllContacts: () => void;
+  onEditContact: ((updatedContact: Contact) => void);
   onRemoveContact: ((id: string) => void)
 }
 
 export interface ContactTableProps {
-  contacts: Contact[],
-  onRemoveContact: (id: string) => void,
-  onEditContact: (updateContact: Contact) => void,
+  contacts: Contact[];
+  onRemoveContact: (id: string) => void;
+  onEditContact: (updateContact: Contact) => void;
 }
 
 export interface ContactCardProps extends Contact, Pick<ContactTableProps, "contacts">, Partial<Pick<ContactTableProps, "onRemoveContact" | "onEditContact">> {}
@@ -35,23 +35,23 @@ export interface EditPopupProps {
 }
 
 export interface LetterProps extends Partial<ContactTableProps>{
-  letter: string,
-  id: string,
+  letter: string;
+  id: string;
 }
 
 export interface SearchPopupProps extends ContactTableProps {
-  onClose: () => void,
-  input: string,
-  filteredContacts: Contact[],
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  handleShowAll: () => void,
+  onClose: () => void;
+  input: string;
+  filteredContacts: Contact[];
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleShowAll: () => void
 }
 
 export interface SearchAreaProps extends Pick<SearchPopupProps, 'filteredContacts' | 'onRemoveContact' | 'onEditContact' | 'contacts'> {}
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  ariaLabel: string,
-  children: React.ReactNode,
+  ariaLabel: string;
+  children: React.ReactNode;
 }
 
 export interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {

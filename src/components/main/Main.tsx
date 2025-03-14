@@ -32,7 +32,7 @@ export default function Main() {
   return (
     <main className="main">
       <InteractionContainer
-        onAddContact={handleAddContact}
+        addContact={handleAddContact}
         contacts={contacts}
         handleRemoveAllContacts={handleRemoveAllContacts}
         onRemoveContact={handleRemoveContact}

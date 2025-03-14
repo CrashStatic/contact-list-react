@@ -7,7 +7,7 @@ import {useValidation} from "../../hooks/useValidation";
 import {AddContactFormProps, Contact} from "../../types/types";
 
 export default function AddContactForm({
-                                         onAddContact,
+                                         addContact,
                                          contacts,
                                          handleRemoveAllContacts,
                                          onEditContact,
@@ -35,7 +35,7 @@ export default function AddContactForm({
       id: Date.now().toString()
     };
 
-    onAddContact(newContact);
+    addContact(newContact);
 
     setName("");
     setPosition("");

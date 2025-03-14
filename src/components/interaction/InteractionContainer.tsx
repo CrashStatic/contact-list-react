@@ -4,7 +4,7 @@ import AddContactForm from "../addContactForm/AddContactForm";
 import {AddContactFormProps} from "../../types/types";
 
 export default function InteractionContainer({
-                                               onAddContact,
+                                               addContact,
                                                contacts,
                                                onEditContact,
                                                onRemoveContact,
@@ -14,7 +14,7 @@ export default function InteractionContainer({
     <section className="interaction">
       <h2 className="visually-hidden">Contact information form</h2>
       <AddContactForm
-        onAddContact={onAddContact}
+        addContact={addContact}
         contacts={contacts}
         handleRemoveAllContacts={handleRemoveAllContacts}
         onRemoveContact={onRemoveContact}
