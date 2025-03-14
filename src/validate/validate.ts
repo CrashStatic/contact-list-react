@@ -1,5 +1,5 @@
-import {Contact, ErrorInput} from "../types/types";
-import {MINIMUM_LENGTH} from "../constants/constants";
+import {Contact, ErrorInput, Validate} from "../types/types";
+import {ERROR_MESSAGES, LETTERS_REGEX, MINIMUM_LENGTH, PHONE_REGEX} from "../constants/constants";
 
 export function validateEmptyFields(inputs: string[]): ErrorInput[] {
   const errors: ErrorInput[] = [];
@@ -7,7 +7,7 @@ export function validateEmptyFields(inputs: string[]): ErrorInput[] {
 
   inputs.forEach((input, index) => {
     if (!input.trim()) {
-      errors.push({ input: fields[index], message: 'Fill in all fields!' });
+      errors.push({ input: fields[index], message: ERROR_MESSAGES.REQUIRED });
     }
   });
   return errors;
@@ -20,31 +20,29 @@ export function validateContactUniqueness(storage: Contact[], contact: Omit<Cont
     existingContact.phone === contact.phone
   ));
   return existingContact
-    ? [{ input: "name", message: 'This contact has already been recorded!' }]
+    ? [{ input: "name", message: ERROR_MESSAGES.DUPLICATE }]
     : [];
 }
 
-function validateLetters(input: string, minLength: number, field: string): ErrorInput[] {
-  const errors = [];
-  const regLetters = /^[a-zA-Z]+$/;
+function validateLetters(input: string, field: keyof Omit<Contact, "id">): ErrorInput[] {
+  const errors: ErrorInput[] = [];
 
-  if (input.length < minLength) {
-    errors.push({ input: field, message: `Value cannot be shorter than ${minLength} letters!` });
+  if (input.length < MINIMUM_LENGTH) {
+    errors.push({ input: field, message: ERROR_MESSAGES.MIN_LENGTH(MINIMUM_LENGTH) });
   }
-  if (!regLetters.test(input)) {
-    errors.push({ input: field, message: 'Value must contain English letters!' });
+
+  if (!LETTERS_REGEX.test(input)) {
+    errors.push({ input: field, message: ERROR_MESSAGES.ONLY_LETTERS });
   }
+
   return errors;
 }
 
 function validatePhone(phone: string): ErrorInput[] {
-  const regNumbers = /^\+7 \d{3} \d{3} \d{2} \d{2}$/;
-  return !regNumbers.test(phone)
-    ? [{ input: 'phone', message: 'Wrong number!' }]
-    : [];
+  return !PHONE_REGEX.test(phone) ? [{ input: "phone", message: ERROR_MESSAGES.WRONG_PHONE }] : [];
 }
 
-export function validateForm(inputs: string[], storage: Contact[]): { isValid: boolean; errors: ErrorInput[] } {
+export function validateForm(inputs: string[], storage: Contact[]): Validate {
   const errors: ErrorInput[] = [];
 
   const contactToValidate: Omit<Contact, 'id'> = {
@@ -60,8 +58,8 @@ export function validateForm(inputs: string[], storage: Contact[]): { isValid: b
   }
 
   errors.push(...validateContactUniqueness(storage, contactToValidate));
-  errors.push(...validateLetters(inputs[0], MINIMUM_LENGTH, 'name'));
-  errors.push(...validateLetters(inputs[1], MINIMUM_LENGTH, 'position'));
+  errors.push(...validateLetters(inputs[0], 'name'));
+  errors.push(...validateLetters(inputs[1], 'position'));
   errors.push(...validatePhone(inputs[2]));
 
   return errors.length > 0 ? { isValid: false, errors } : { isValid: true, errors: [] };

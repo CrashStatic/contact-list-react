@@ -108,3 +108,14 @@ export const Constants = [
 export const PHONE_PREFIX = "+7";
 
 export const MINIMUM_LENGTH = 3;
+
+export const PHONE_REGEX = /^\+7 \d{3} \d{3} \d{2} \d{2}$/;
+export const LETTERS_REGEX = /^[a-zA-Z]+$/;
+
+export const ERROR_MESSAGES = {
+  REQUIRED: "Fill in all fields!",
+  DUPLICATE: "This contact has already been recorded!",
+  MIN_LENGTH: (min: number) => `Value cannot be shorter than ${min} letters!`,
+  ONLY_LETTERS: "Value must contain English letters!",
+  WRONG_PHONE: "Wrong number!",
+};
