@@ -1,12 +1,10 @@
 .contact-table {
   display: flex;
+  flex-direction: row;
+  gap: 30px;
 }
 
-.contact-table__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(13, min-content);
-  grid-auto-rows: min-content;
-  grid-auto-flow: column;
-  column-gap: 30px;
+.contact-table__column {
+  display: flex;
+  flex-direction: column;
 }

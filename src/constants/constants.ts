@@ -1,4 +1,4 @@
-export const Constants = [
+export const ALPHABET_A_M = [
   {
     letter: 'A',
     id: 'a'
@@ -51,6 +51,9 @@ export const Constants = [
     letter: 'M',
     id: 'm'
   },
+];
+
+export const ALPHABET_N_Z = [
   {
     letter: 'N',
     id: 'n'

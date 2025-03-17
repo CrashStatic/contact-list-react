@@ -20,6 +20,8 @@ export interface AddContactFormProps {
 }
 
 export interface ContactTableProps {
+  alphabetLeft?: LetterProps[],
+  alphabetRight?: LetterProps[],
   contacts: Contact[];
   onRemoveContact: (id: string) => void;
   onEditContact: (updateContact: Contact) => void;
